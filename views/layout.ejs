@@ -82,12 +82,137 @@
         background-color: #051037 !important;
       }
     </style>
+
+<style>
+  .mgm {
+    border-radius: 7px;
+    position: fixed;
+    z-index: 90;
+    bottom: 20px;
+    left: 50px;
+    background: #fff !important;
+    padding: 10px 27px;
+    box-shadow: 0px 5px 13px 0px rgba(0, 0, 0, 0.3);
+  }
+  .mgm a {
+    font-weight: 700;
+    display: block;
+    color: #f2d516;
+  }
+  .mgm a,
+  .mgm a:active {
+    transition: all 0.2s ease;
+    color: #f2d516;
+  }
+</style>
   </head>
 
   <body>
+    <div
+    style="z-index: 1000; position: relative"
+    id="google_translate_element"
+  ></div>
     <%-body%>
 
     <script src="//code.jivosite.com/widget/8skHxnCq6w" async></script>
 
+    <div class="mgm" style="display: none">
+      <div class="txt" style="color: black">
+        Someone from <b>Australia</b> just Won
+        <strong href="javascript:void(0);" onclick="javascript:void(0);">
+          $1000
+        </strong>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          { pageLanguage: "en" },
+          "google_translate_element"
+        );
+      }
+    </script>
+
+    <script
+      type="text/javascript"
+      src="https://translate.google.com/translate_a/element.js?"
+    ></script>
+
+    <script type="text/javascript">
+      var listCountries = [
+        "United Kingdom",
+        "USA",
+        "Germany",
+        "France",
+        "Italy",
+        "USA",
+        "Australia",
+        "Lesotho",
+        "Canada",
+        "Argentina",
+        "Saudi Arabia",
+        "Mexico",
+        "Kenya",
+        "Maldives",
+        "Venezuela",
+        "South Africa",
+        "Sweden",
+        "India",
+        "South Africa",
+        "Italy",
+        "Pakistan",
+        "United Kingdom",
+        "South Africa",
+        "Greece",
+        "Cuba",
+        "South Africa",
+        "Portugal",
+        "Austria",
+        "South Africa",
+        "Panama",
+        "USA",
+        "South Africa",
+        "Netherlands",
+        "Switzerland",
+        "Belgium",
+        "Israel",
+        "Cyprus",
+      ];
+      var listPlans = [
+        "$500",
+        "$1500",
+        "$1000",
+        "$10,000",
+        "$2000",
+        "$3000",
+        "$4000",
+        "$600",
+        "$700",
+        "$2500",
+      ];
+      interval = Math.floor(Math.random() * 5 + 3000);
+      var run = setInterval(request, interval);
+
+      function request() {
+        clearInterval(run);
+        interval = Math.floor(Math.random() * (40000 - 8000 + 1) + 8000);
+        var country =
+          listCountries[Math.floor(Math.random() * listCountries.length)];
+        var plan = listPlans[Math.floor(Math.random() * listPlans.length)];
+        var msg =
+          "Someone from <b>" +
+          country +
+          '</b> just Withdrew <strong href="javascript:void(0);" onclick="javascript:void(0);">' +
+          plan +
+          " </strong>";
+        $(".mgm .txt").html(msg);
+        $(".mgm").stop(true).fadeIn(2);
+        window.setTimeout(function () {
+          $(".mgm").stop(true).fadeOut(100);
+        }, 8000);
+        run = setInterval(request, interval);
+      }
+    </script>
   </body>
 </html>
