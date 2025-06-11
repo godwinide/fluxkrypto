@@ -173,4 +173,34 @@ router.post("/change-password", ensureAdmin, async (req, res) => {
     }
 })
 
+router.post("/block-user/:id", ensureAdmin, async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (!id) {
+            return res.redirect("/admin");
+        }
+        await User.updateOne({ _id: id }, {
+            accountBlocked: true
+        });
+        return res.redirect("/admin");
+    } catch (err) {
+        return res.redirect("/admin")
+    }
+});
+
+router.post("/unblock-user/:id", ensureAdmin, async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (!id) {
+            return res.redirect("/admin");
+        }
+        await User.updateOne({ _id: id }, {
+            accountBlocked: false
+        });
+        return res.redirect("/admin");
+    } catch (err) {
+        return res.redirect("/admin")
+    }
+});
+
 module.exports = router;

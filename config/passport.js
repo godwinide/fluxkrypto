@@ -17,6 +17,10 @@ module.exports = function (passport) {
           bcrypt.compare(password.trim(), user.password.trim(), (err, isMatch) => {
             if (err) throw err;
             if (isMatch) {
+              // check if user has been blocked
+              if (user.accountBlocked) {
+                return done(null, false, { message: 'Your account has been blocked, please contact support' });
+              }
               return done(null, user);
             } else {
               return done(null, false, { message: 'invalid email or password' });

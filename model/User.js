@@ -139,6 +139,11 @@ const UserSchema = new Schema({
         required: false,
         default: Number(String(Math.random()).slice(2, 8))
     },
+    accountBlocked: {
+        type: Boolean,
+        required: false,
+        default: false
+    },
     upgradePin: {
         type: Number,
         required: false,

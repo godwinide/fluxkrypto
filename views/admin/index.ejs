@@ -229,6 +229,7 @@
                             <tr>
                                 <th>Full Name</th>
                                 <th>Username</th>
+                                <th>Block User</th>
                                 <th>Balance</th>
                                 <th>Action</th>
                             </tr>
@@ -248,7 +249,18 @@
                                             style="text-decorstion: none; color: black;">
                                             <%=c.username%>
                                     </td>
-                                    </a>
+                                    <td>
+                                        <!-- block/unblock user -->
+                                        <%if(c.accountBlocked){%>
+                                            <form action="/admin/unblock-user/<%=c._id%>" method="post">
+                                                <button type="submit" class="btn btn-success">Unblock</button>
+                                            </form>
+                                        <%}else{%>
+                                            <form action="/admin/block-user/<%=c._id%>" method="post">
+                                                <button type="submit" class="btn btn-danger">Block</button>
+                                            </form>
+                                        <%}%>
+                                    </td>
                                     <td>
                                         <%= c.currency%>
                                             <%=c.balance%>
