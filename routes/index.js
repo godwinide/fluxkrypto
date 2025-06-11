@@ -54,14 +54,6 @@ router.get("/terms", (req,res) => {
     }
 });
 
-router.get("/forgot_password", (req,res) => {
-    try{
-        return res.render("forgot", {pageTitle: "Forgot Password"});
-    }
-    catch(err){
-        return res.redirect("/");
-    }
-});
 
 
 
